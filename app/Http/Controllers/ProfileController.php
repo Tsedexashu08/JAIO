@@ -23,14 +23,14 @@ class ProfileController extends Controller
 
     public function SideBar(Request $request): View
     {
-        return view('profile.Side-bar', [
+        return view('Side-bar', [
             'user' => $request->user(),
         ]);
     }
 
     public function edit(Request $request): View
     {
-        return view('profile.edit', [
+        return view('edit', [
             'user' => $request->user(),
         ]);
     }

@@ -49,6 +49,12 @@
         .form-group button:hover {
             background-color: #45a049;
         }
+        select{
+            border-radius: 5px;
+        }
+        select:hover{
+            background-color:rgba(100, 124, 101, 0.32);
+        }
     </style>
 <div class="form-container">
     <h1>Upload Resource</h1>
@@ -63,11 +69,39 @@
             <textarea id="description" name="description"></textarea>
         </div>
 
-        <div class="form-group">
+
+        <div class="form-group"> 
+            <select name="linkOrfile" id="linkOrfile">
+                <option value="resourceType" selected>Resource Type</option>
+                <option value="link">Embeded Link</option>
+                <option value="file">File</option>
+            </select>
+            <div class="form-group" id="linkinput" style="display: none;">
+                <label for="link">Embeded Link</label>
+                <input type="text" name="link" id="link">
+            </div>
+            
+            <div class="form-group" id="fileinput" style="display: none;">
             <label for="file_path">File Upload</label>
             <input type="file" id="file_path" name="file_path" required>
         </div>
+        </div>
 
+        <script>
+           document.getElementById("linkOrfile").addEventListener("change", function () {
+                if (this.value === "file") {
+                    document.getElementById("linkinput").style.display = "none";
+                    document.getElementById("fileinput").style.display = "block";
+                    document.getElementById("link").value="";
+                } else {
+                    document.getElementById("linkinput").style.display = "block";
+                    document.getElementById("fileinput").style.display = "none";
+                    document.getElementById("file_path").value = null;
+
+                }
+            });
+
+        </script>
         <div class="form-group">
             <button type="submit">Submit Resource</button>
         </div>

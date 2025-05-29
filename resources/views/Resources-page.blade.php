@@ -1,18 +1,51 @@
 <x-app-layout>
 
-    <link rel="stylesheet" href="{{ asset('css/resource.css') }}">
 
     <div class="resource-list">
         <h1>All your curiosity and information in one place</h1>
-        <a href="{{route('admin.addresource')}}">Add-Resource</a>
+        <a href="{{route('admin.addresource')}}"><button >Add-Resource</button></a>
         <section class="courses">
             <h2>Free Courses found online</h2>
 
-            <button class="scroll-button left" onclick="scrollCourses(-1)">&#10094;</button>
+            {{-- <button class="scroll-button left" onclick="scrollCourses(-1)">&#10094;</button> --}}
             <div class="course-list-container">
                 <div class="course-list">
                     <div class="course-item">
+                        <iframe width="853" height="480" src="https://www.youtube.com/embed/K5KVEU3aaeQ"
+                            title="Python Full Course for Beginners [2025]" frameborder="0"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                            referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                            <p>Python Full Course for Beginners [2025]</p>
+                            <p>2 hours</p>
+                   
+                    </div>
+                    <div class="course-item">
+                        <iframe width="853" height="480" src="https://www.youtube.com/embed/un6ZyFkqFKo"
+                            title="Go Programming – Golang Course with Bonus Projects" frameborder="0"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                            referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                        <p>Go Programming – Golang Course with Bonus Projects</p>
+                        <p>9 hour video</p>
+                    </div>
+                    <div class="course-item">
+                        <iframe width="853" height="480" src="https://www.youtube.com/embed/dCLhUialKPQ"
+                            title="React JS 19 Full Course 2025 | Build an App and Master React in 2 Hours" frameborder="0"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                            referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                        <p>React JS 19 Full Course 2025</p>
+                        <p>2 hours</p>
+                    </div>
+                    <div class="course-item">
                         <div class="course-image"></div>
+                        <p>Web development course</p>
+                        <p>12 hour video</p>
+                    </div>    
+                    <div class="course-item">
+                        <div class="course-image"></div>
+                        <p>Web development course</p>
+                        <p>12 hour video</p>
+                    </div>       <div class="course-item">
+                    <div class="course-image"></div>
                         <p>Web development course</p>
                         <p>12 hour video</p>
                     </div>
@@ -21,47 +54,38 @@
                         <p>Web development course</p>
                         <p>12 hour video</p>
                     </div>
-                    <div class="course-item">
-                        <div class="course-image"></div>
-                        <p>Web development course</p>
-                        <p>12 hour video</p>
-                    </div>
-                    <div class="course-item">
-                        <div class="course-image"></div>
-                        <p>Web development course</p>
-                        <p>12 hour video</p>
-                    </div>
-                    <div class="course-item">
-                        <div class="course-image"></div>
-                        <p>Web development course</p>
-                        <p>12 hour video</p>
-                    </div>
-                    <div class="course-item">
-                        <div class="course-image"></div>
-                        <p>Web development course</p>
-                        <p>12 hour video</p>
-                    </div>
+                 
                 </div>
             </div>
-            <button class="scroll-button right" onclick="scrollCourses(1)">&#10095;</button>
+            {{-- <button class="scroll-button right" onclick="scrollCourses(1)">&#10095;</button> --}}
         </section>
         <section class="tips">
             <h2>Tips for getting that dream job</h2>
             <div class="course-list">
                 <div class="course-item">
-                    <div class="course-image"></div>
-                    <p>Web development course</p>
-                    <p>12 hour video</p>
+            <iframe width="473" height="480" src="https://www.youtube.com/embed/1t1_a1BZ04o"
+                title="How to NOT Fail a Technical Interview" frameborder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+            
+            <p>How to NOT Fail a Technical Interview</p>
+            <p>8 minutes</p>
                 </div>
                 <div class="course-item">
-                    <div class="course-image"></div>
-                    <p>Web development course</p>
-                    <p>12 hour video</p>
+                    <iframe width="853" height="480" src="https://www.youtube.com/embed/fQW6-2yfsBY"
+                        title="How To Pass Coding Interviews Like the Top 1%" frameborder="0"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                        referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                    <p>How To Pass Coding Interviews Like the Top 1%</p>
+                    <p>7 minutes</p>
                 </div>
                 <div class="course-item">
-                    <div class="course-image"></div>
-                    <p>Web development course</p>
-                    <p>12 hour video</p>
+                    <iframe width="853" height="480" src="https://www.youtube.com/embed/y4uBUxyzmAg" title="Interview Tips in Amharic"
+                        frameborder="0"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                        referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>              
+                    <p>Interview Tips in Amharic</p>
+                    <p>8 minutes</p>
                 </div>
             </div>
         </section>
@@ -107,7 +131,7 @@
     justify-content: flex-start; /* Align content to the top */
     transition: transform 0.3s ease, background-color 0.3s ease; /* Add transition for smooth movement and color change */
     border: 2px solid #d8bfd8; /* Light purple border */
-    overflow: hidden; /* Ensure content does not overflow */
+    overflow: hidden; /* Ensure content does not overflow*/
 }
 
 .course-item:hover {
@@ -116,9 +140,9 @@
     color: #fff; /* Change text color to white */
 }
 
-.course-image {
-    width: 200px; /* Adjusted width */
-    height: 200px; /* Adjusted height */
+iframe {
+    width: 400px; /* Adjusted width */
+    height: 300px; /* Adjusted height */
     background-color: #ccc;
     margin-bottom: 10px;
     border-radius: 8px; /* Matching image corners with container */
@@ -147,6 +171,24 @@ h2 {
     white-space: normal; /* Allow text to wrap */
     text-align: center; /* Center-align the text */
 }
+button{
+    background-color:  ;
+    border-radius: 10px;
+    width:8vw;
+    height: 6vh;
+    transition: transform 0.3s ease, background-color 0.3s ease; /* Add transition for smooth movement and color change */
+    border: 1px solid rgb(62, 100, 182); /* Light purple border */
+    box-shadow: 0  4px 8px 4px rgba(0, 0, 0, 0.2); /* Create a shadow for better separation */
+
+
+}
+button:hover{
+    transform: 2s translateY(-2px); /* Move item up on hover */
+    background-color: #00008B; /* Dark blue color on hover */
+    color: #fff; /* Change text color to white */
+    box-shadow: 0  4px 8px 4px rgba(23, 8, 226, 0.2); /* Create a shadow for better separation */
+
+}
 
 /* Media Queries for Responsive Design */
 @media (max-width: 1200px) {
@@ -154,9 +196,9 @@ h2 {
         flex: 0 1 calc(25% - 20px); /* Adjust width for larger screens */
         height: 300px; /* Adjust height for larger screens */
     }
-    .course-image {
-        width: 150px; /* Adjusted image size */
-        height: 150px;
+    iframe {
+        width: 90%; /* Adjusted image size */
+        height: 90%;
     }
     h1 {
         font-size: 1.6em; /* Adjust font size */
@@ -171,15 +213,19 @@ h2 {
         flex: 0 1 calc(50% - 20px); /* Adjusting width to fit 2 items per row */
         height: 250px; /* Adjust height for smaller screens */
     }
-    .course-image {
-        width: 120px; /* Adjusted image size */
-        height: 120px;
+    iframe {
+        width: 90%; /* Adjusted image size */
+        height: 90%;
     }
     h1 {
         font-size: 1.4em; /* Smaller font size for tablets */
     }
     h2 {
         font-size: 1em; /* Adjust font size */
+    }
+
+    button{
+        width:fit-content;
     }
 }
 

@@ -73,7 +73,7 @@
                             <p>{{ $forumPost->content }}</p>
                             <div class="images">
                                 @foreach ($forumPost->images as $image)
-                                    <img src="{{ asset('storage/' . $image->image) }}" alt="Forum Image"
+                                    <img style="height:40%; width:60%;" src="{{ asset('storage/' . $image->image) }}" alt="Forum Image"
                                         id="forum-image" class="img-fluid" loading="lazy">
                                 @endforeach
                             </div>

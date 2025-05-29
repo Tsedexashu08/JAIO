@@ -59,7 +59,10 @@
 
     <script>
         document.querySelectorAll('.chat-link').forEach(link => {
-            link.addEventListener('click', function() {
+            link.addEventListener('click',load);
+        });
+
+        function load() {
                 const defaultSec = document.getElementById('default-chat-section');
                 const chatBox = document.getElementById('chat-box');
                 const chatmessages = document.getElementById('chat-messages')
@@ -80,10 +83,18 @@
                 document.getElementById('chat-user-name').textContent = userName;
 
                 // Initiate or get the chat session via fetch request
-                initiateChat(userId);
-
+                // initiateChat(userId);
+                initiateChat(userId).then(() => {
+                // 2. Start polling for messages
+                setInterval(() => {
+                    LoadMessages();
+                }, 5000);
             });
-        });
+
+            }
+
+         // 1. Initiate chat once
+
 
         // function to call the initiateChat API(the one we callin when a chatpreview is clicked like in telegram).
         async function initiateChat(userId) {

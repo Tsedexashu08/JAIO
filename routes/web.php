@@ -45,9 +45,15 @@ Route::get('admin/add-event', function(){
 Route::get('admin/add-internship', function(){ 
     return view('Add-Job'); 
 })->name('admin.addjob'); 
+
 Route::get('admin/add-resource', function(){ 
     return view('Add-Resource'); 
-})->name('admin.addresource'); 
+})->name('admin.addresource');
+
+Route::post('resources/add-resource', [ResourceController::class, 'AddResource'])->name('resource.add');
+// Route::post('/submit_resource', [ResourceController::class, 'AddResource'])->name("submit_resource");
+
+
 Route::post('jobs/add-job',[JobController::class,'AddJob'])->name('job.add'); 
 Route::post('jobs/add-event',[EventsController::class,'AddEvent'])->name('event.add'); 
 
@@ -84,6 +90,5 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile/picture', [ProfileController::class, 'updateProfilePicture'])->name ('profile.picture.update'); 
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy'); 
 
-    // Route::post('/submit_resource',function (){return "Sup";})->name("submit_resource");
 });
 require __DIR__ . '/auth.php';

@@ -7,6 +7,11 @@ use Illuminate\Database\Eloquent\Model;
 class EventRegistration extends Model
 {
     protected $table = 'event_registrations';
+    public $primarykey = 'registration_id';
+    protected $fillable = [
+        'event_id',
+        'user_id',
+    ];
     
     public function user()
     {

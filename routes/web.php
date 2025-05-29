@@ -50,6 +50,8 @@ Route::get('admin/add-resource', function(){
 })->name('admin.addresource'); 
 Route::post('jobs/add-job',[JobController::class,'AddJob'])->name('job.add'); 
 Route::post('jobs/add-event',[EventsController::class,'AddEvent'])->name('event.add'); 
+// Route::post('jobs/add-resource', [ResourceController::class, 'AddResource'])->name('resource.add');
+Route::post('resources/add-resource',[ResourceController::class,'AddResource'])->name('resource.add');
 
 
 

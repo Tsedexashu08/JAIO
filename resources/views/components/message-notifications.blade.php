@@ -3,7 +3,7 @@
     <div class="chat">
         <div class="background">
             <a href="{{ route('messages') }}">
-                <img src="{{ asset('images/notifications.png') }}" alt="" srcset="">
+                <img src="{{ asset('images/careerbuddy.png') }}" alt="" srcset="">
             </a>
         </div>
     </div>

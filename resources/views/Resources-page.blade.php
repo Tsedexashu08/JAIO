@@ -3,15 +3,62 @@
 
     <div class="resource-list">
         <h1>All your curiosity and information in one place</h1>
-        <a href="{{route('admin.addresource')}}"><button >Add-Resource</button></a>
+        
+        @if(auth()->user()->hasAllRoles("Admin") || auth()->user()->hasAllRoles("Admin"))
+        <a  href="{{route('admin.addresource')}}"><button >Add-Resource</button></a>
+        @endif
+        {{-- <h1>Role:{{auth()->user()->hasAllRoles("Admin")}}</h1> --}}
         <section class="courses">
+            <div class="uploaded">
+                Uploaded Courses
+                <div class="flex flex-col md:flex-row gap-4 flex-wrap">
+                    @foreach($resources as $resource)
+                        <div class="w-full md:w-1/2 p-2 border rounded relative">
+                          
+
+                            @if($resource->linkorfile === 'link')
+                                {{-- Embedded YouTube video --}}
+                                <iframe class="w-full aspect-video"
+                                    src="https://www.youtube.com/embed/{{ \Illuminate\Support\Str::after($resource->link, 'v=') }}"
+                                    frameborder="0" allowfullscreen>
+                                </iframe>
+                            @elseif($resource->linkorfile === 'file')
+                                {{-- Uploaded video file --}}
+                                <video class="w-full" controls>
+                                    <source src="{{ asset('storage/' . $resource->file_path) }}" type="video/mp4">
+                                    Your browser does not support the video tag.
+                                </video>
+                            @endif
+                            <p>{{ $resource->title }}</p>
+                            <p >{{ $resource->description }}</p>
+                            @if(auth()->user()->hasAllRoles("Admin") || auth()->user()->hasAllRoles("Admin"))
+ 
+                            {{-- Delete Button --}}
+                            <form action="{{ route('resource.destroy', $resource->resource_id) }}" method="POST" class="mt-4">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" onclick="return confirm('Are you sure you want to delete this resource?')"
+                                    class="bg-red-600 text-white px-4 py-2 rounded hover:bg-red-700 transition">
+                                    Delete
+                                </button>
+                            </form>
+                            @endif
+                        </div>
+                    @endforeach
+                </div>
+                
+                
+            </div>
+
+
+
             <h2>Free Courses found online</h2>
 
             {{-- <button class="scroll-button left" onclick="scrollCourses(-1)">&#10094;</button> --}}
             <div class="course-list-container">
                 <div class="course-list">
 
-                    
+
                     <div class="course-item">
                         <iframe width="853" height="480" src="https://www.youtube.com/embed/K5KVEU3aaeQ"
                             title="Python Full Course for Beginners [2025]" frameborder="0"

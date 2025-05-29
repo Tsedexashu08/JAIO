@@ -7,6 +7,8 @@ use Illuminate\Database\Eloquent\Model;
 class Resource extends Model
 {
     protected $table = 'resources';
+    protected $primaryKey = 'resource_id'; // e.g. resource_id or uuid
+
 
     protected $fillable = [
         'title',       // Add this

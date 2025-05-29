@@ -8,6 +8,24 @@
         rgba(0, 0, 0, 0.3) 0 7px 13px -6px, rgba(0, 0, 0.6, 0.2) 0 -3px 0 inset;
     width: 90dvw;
 }
+.button{
+    background-color:  #4a6ac192;
+    border-radius: 10px;
+    width:8vw;
+    height: 6vh;
+    transition: transform 0.3s ease, background-color 0.3s ease; /* Add transition for smooth movement and color change */
+    border: 1px solid rgb(62, 100, 182); /* Light purple border */
+    box-shadow: 0  4px 8px 4px rgba(0, 0, 0, 0.2); /* Create a shadow for better separation */
+
+
+}
+.button:hover{
+    transform: 2s translateY(-2px); /* Move item up on hover */
+    background-color: #00008B; /* Dark blue color on hover */
+    color: #fff; /* Change text color to white */
+    box-shadow: 0  4px 8px 4px rgba(23, 8, 226, 0.2); /* Create a shadow for better separation */
+
+}
 .search-panel {
     border: 4px solid white;
     display: flex;

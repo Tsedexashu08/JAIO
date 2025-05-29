@@ -60,6 +60,7 @@
     <h1>Upload Resource</h1>
     <form action="{{route('resource.add')}}" method="POST" enctype="multipart/form-data">
         @csrf
+
         <div class="form-group">
             <label for="title">Title</label>
             <input type="text" id="title" name="title" required>

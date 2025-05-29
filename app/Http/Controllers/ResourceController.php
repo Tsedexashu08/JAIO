@@ -2,14 +2,18 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Resource;
 use Illuminate\Http\Request;
 use App\Models\Resource;
 
 class ResourceController extends Controller
 {
-    public function index(){
-        return view('Resources-page');
+    public function index()
+    {
+        $resource = Resource::all();
+        return view('Resources-page',['resources'=>$resource]);
     }
+
     public function AddResource(Request $request){
         $request->validate([
             'title' => 'required|string',
@@ -19,34 +23,27 @@ class ResourceController extends Controller
         // Process the uploaded images
         $resource = null;
         if ($request->hasFile('file_path')) {
-
             $path = $request->file('file_path')->store('resources', 'public');
-            $resource = Resource::create([
+            $resource =  Resource::create([
                 'title' => $request->title,
                 'description' => $request->description,
                 'file_path' => $path,
             ]);
         }
-      
         if ($resource) {
             return redirect()->route('Resources')->with('success', 'Resource added successfully');
         } else {
             return response()->json(['error' => 'Resource not added successfully: ' . $request->file('file_path')->getErrorMessage()], 500);
         }
-
     }
-    public function EditResource(Request $request){
-
-    }
-    public function DeleteResource($id){
-        $resource = Resource::findOrFail($id);
+    public function EditResource(Request $request) {}
+    public function DeleteResource($id) {
+         $resource = Resource::findOrFail($id);
 
         if ($resource->delete()) {
             return redirect()->route('Resources')->with('success', 'Resource deleted successfully');
         } else {
             return response()->json(['error' => 'Resource not deleted successfully'], 500);
         }
-        
     }
-
 }

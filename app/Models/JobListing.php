@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class JobListing extends Model
 {
     protected $table = 'job_listings';
-    protected $primarykey='job_id';
+    protected $primaryKey='job_id';
     protected $fillable = [
         'title',
         'type',
@@ -17,5 +17,10 @@ class JobListing extends Model
         'description',
         'category',
         'application_deadline',
+        'apllication_link',
     ];
+    public function applications()
+    {
+        return $this->hasMany(appliedcareers::class, 'job_id', 'job_id');
+    }
 }

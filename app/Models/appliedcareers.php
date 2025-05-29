@@ -13,8 +13,13 @@ class appliedcareers extends Model
         'job_id',
     ];
 
+    public function jobListing()
+    {
+        return $this->belongsTo(JobListing::class, 'job_id', 'job_id');
+    }
+
     public function user()
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(User::class, 'user_id', 'id');
     }
 }

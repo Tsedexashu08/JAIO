@@ -99,6 +99,11 @@ class User extends Authenticatable
 
     public function appliedCareers()
     {
-        return $this->hasMany(appliedcareers::class);
+        return $this->hasMany(appliedcareers::class, 'job_id');
+    }
+    
+    public function applications()
+    {
+        return $this->hasMany(appliedcareers::class, 'user_id', 'id');
     }
 }

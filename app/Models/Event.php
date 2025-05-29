@@ -8,6 +8,7 @@ class Event extends Model
 {
     
     protected $table = 'events';
+    protected $primaryKey = 'event_id';
     protected $fillable = [
         'title',
         'location',
@@ -22,6 +23,6 @@ class Event extends Model
     }
     public function eventImages()
     {
-        return $this->hasMany(event_images::class,'event_id');
+        return $this->hasMany(event_images::class,'event_id','event_id');
     }
 }

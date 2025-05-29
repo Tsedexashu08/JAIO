@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Resource;
 use Illuminate\Http\Request;
+use App\Models\Resource;
 
 class ResourceController extends Controller
 {
@@ -12,8 +13,8 @@ class ResourceController extends Controller
         $resource = Resource::all();
         return view('Resources-page',['resources'=>$resource]);
     }
-    public function AddResource(Request $request)
-    {
+
+    public function AddResource(Request $request){
         $request->validate([
             'title' => 'required|string',
             'description' => 'required|string',
@@ -22,7 +23,6 @@ class ResourceController extends Controller
         // Process the uploaded images
         $resource = null;
         if ($request->hasFile('file_path')) {
-
             $path = $request->file('file_path')->store('resources', 'public');
             $resource =  Resource::create([
                 'title' => $request->title,

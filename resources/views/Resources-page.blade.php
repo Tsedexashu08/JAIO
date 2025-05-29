@@ -10,6 +10,8 @@
             {{-- <button class="scroll-button left" onclick="scrollCourses(-1)">&#10094;</button> --}}
             <div class="course-list-container">
                 <div class="course-list">
+
+                    
                     <div class="course-item">
                         <iframe width="853" height="480" src="https://www.youtube.com/embed/K5KVEU3aaeQ"
                             title="Python Full Course for Beginners [2025]" frameborder="0"
@@ -19,6 +21,7 @@
                             <p>2 hours</p>
                    
                     </div>
+
                     <div class="course-item">
                         <iframe width="853" height="480" src="https://www.youtube.com/embed/un6ZyFkqFKo"
                             title="Go Programming – Golang Course with Bonus Projects" frameborder="0"

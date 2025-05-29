@@ -25,6 +25,7 @@ class ResourceController extends Controller
                 'title' => $request->title,
                 'description' => $request->description,
                 'file_path' => $path,
+                'linkorfile'=>"file"
             ]);
         }
       

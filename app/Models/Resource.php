@@ -12,6 +12,6 @@ class Resource extends Model
         'description', // Include other fields that should be mass-assignable
         'link',
         'file_path',
-        'linkOrfile'   // Or whatever your field names are
+        'linkorfile'   // Or whatever your field names are
     ];
 }

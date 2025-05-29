@@ -21,7 +21,7 @@ class ResourceController extends Controller
             'description' => 'required|string',
         
             'file_path' => 'exclude_unless:linkOrfile,file|file|mimes:mp4,avi,wmv,mov,webm,ogg|max:204800',
-            'link' => 'exclude_unless:linkOrfile,link|string|required_if:linkOrfile,link',
+            'link' => 'exclude_unless:linkOrfile,link|string|required_if:linkOrfile,link|url|starts_with:https://www.youtube.com',
         
             'linkOrfile' => 'required|in:file,link',
         ]);
@@ -39,12 +39,13 @@ class ResourceController extends Controller
                 'link' => null, // just to be explicit
             ]);
         } else if ($request->filled('link')) {
+
             $resource = Resource::create([
                 'title' => $request->title,
                 'description' => $request->description,
                 'file_path' => null,  // no file uploaded
                 'linkorfile' => "link",
-                'link' => $request->link,
+                'link' => $this->getSafeYoutubeEmbedUrl( $request->link),
             ]);
         } else {
             // Handle error: neither file nor link provided
@@ -56,6 +57,38 @@ class ResourceController extends Controller
         } else {
             return response()->json(['error' => 'Resource not added successfully: ' . $request->file('file_path')->getErrorMessage()], 500);
         }
+    }
+    /**
+     * Generate safe YouTube embed URL
+     */
+    protected function getSafeYoutubeEmbedUrl($url)
+    {
+        $videoId = $this->extractYouTubeId($url);
+
+        if (!$videoId) {
+            return '';
+        }
+
+        return "https://www.youtube.com/embed/{$videoId}?rel=0&enablejsapi=1";
+    }
+
+    /**
+     * Extract YouTube ID (more robust version)
+     */
+    protected function extractYouTubeId($url)
+    {
+        $patterns = [
+            '/(?:youtube\.com\/(?:[^\/]+\/.+\/|(?:v|e(?:mbed)?)\/|.*[?&]v=)|youtu\.be\/)([^"&?\/\s]{11})/i',
+            '/^([^"&?\/\s]{11})$/i' // Just in case only ID is stored
+        ];
+
+        foreach ($patterns as $pattern) {
+            if (preg_match($pattern, $url, $matches)) {
+                return $matches[1];
+            }
+        }
+
+        return null;
     }
     public function EditResource(Request $request) {}
     public function DeleteResource($id) {

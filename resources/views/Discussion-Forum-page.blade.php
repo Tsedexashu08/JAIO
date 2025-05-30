@@ -2,8 +2,8 @@
     <link rel="stylesheet" href="{{ asset('css/discussion-forum-page.css') }}">
     <div class="forum-page">
         <div class="forum-header">
-            <h1>Welcome to LaunchNet's Discussion Forum</h1
-            <p id="intro">Ask questions, share your knowledge and experience, and learn from others.</p>
+            <h1>Welcome to LaunchNet's Discussion Forum</h1>
+            <p id="intro" >Ask questions, share your knowledge and experience, and learn from others.</p>
             <p id="results-count"></p>
             <div class="forum-search">
                 <input type="text" placeholder="Search for a topic">

@@ -1,66 +1,126 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# LaunchNest - Career Platform
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+https://github.com/Rufaelu/LaunchNest/blob/main/public/images/Logo.png
 
-## About Laravel
+LaunchNest is a Laravel-based career platform designed to bridge the gap between education and employment by providing an integrated solution for job discovery, skill-building resources, peer networking, and career guidance.
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+## Features
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+- **Integrated Job Listings**: Discover relevant job opportunities in one place
+- **Learning Resources**: Access curated educational materials and courses
+- **Peer Networking**: Connect with other users through chat functionality
+- **Career Buddy**: AI-powered assistant to help with career guidance
+- **User Management**: Comprehensive system for managing user profiles
+- **Admin Dashboard**: Tools for institutions to track student progress
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+## Technologies Used
 
-## Learning Laravel
+- **Backend**: Laravel 10.x
+- **Frontend**: Blade templates, Tailwind CSS (or Bootstrap)
+- **Database**: MySQL
+- **Authentication**: Laravel Sanctum or Jetstream
+- **Additional Packages**:
+  - Laravel Livewire (for interactive UI components)
+  - Laravel Horizon (for queue management)
+  - Laravel Socialite (for social media login)
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+## Installation
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/yourusername/launchnest.git
+   cd launchnest
+   ```
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+2. Install dependencies:
+   ```bash
+   composer install
+   npm install
+   ```
 
-## Laravel Sponsors
+3. Create a copy of the environment file:
+   ```bash
+   cp .env.example .env
+   ```
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+4. Generate application key:
+   ```bash
+   php artisan key:generate
+   ```
 
-### Premium Partners
+5. Configure your database in the `.env` file:
+   ```env
+   DB_DATABASE=launchnest
+   DB_USERNAME=root
+   DB_PASSWORD=
+   ```
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[WebReinvent](https://webreinvent.com/)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Jump24](https://jump24.co.uk)**
-- **[Redberry](https://redberry.international/laravel/)**
-- **[Active Logic](https://activelogic.com)**
-- **[byte5](https://byte5.de)**
-- **[OP.GG](https://op.gg)**
+6. Run migrations and seeders:
+   ```bash
+   php artisan migrate --seed
+   ```
+
+7. Build frontend assets:
+   ```bash
+   npm run build
+   ```
+
+8. Start the development server:
+   ```bash
+   php artisan serve
+   ```
+
+## Configuration
+
+Configure these additional settings in your `.env` file as needed:
+
+- Mail server configuration for notifications
+- Social media login credentials
+- AI service API keys for Career Buddy
+- File storage settings (local, S3, etc.)
+
+## Usage
+
+After installation, you can:
+
+1. Access the platform at `http://localhost:8000`
+2. Register as a new user or use seeded admin credentials:
+   - Email: admin@launchnest.com
+   - Password: password
+3. Explore the different features:
+   - Job listings
+   - Resource library
+   - Networking chat
+   - Career Buddy AI assistant
+
+## API Endpoints
+
+The application provides RESTful API endpoints for mobile clients. Documentation is available at `/api/documentation` after installing and configuring [Laravel API Documentation Generator](https://github.com/mpociot/laravel-apidoc-generator).
 
 ## Contributing
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+We welcome contributions! Please follow these steps:
 
-## Code of Conduct
-
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
-
-## Security Vulnerabilities
-
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+1. Fork the project
+2. Create your feature branch (`git checkout -b feature/AmazingFeature`)
+3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
+4. Push to the branch (`git push origin feature/AmazingFeature`)
+5. Open a Pull Request
 
 ## License
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+## Acknowledgments
+
+- Developers: Rufael Melese, Tsedalu Ashenafi
+- Inspired by the challenges students face in the job market
+- Laravel community for excellent documentation and support
+
+## Contact
+
+For support or inquiries, please email: support@launchnest.com
+
+---
+
+*Your Career Journey Starts Here! Fuel Your Journey. Find Your Nest.*

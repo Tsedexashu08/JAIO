@@ -39,6 +39,7 @@ Route::post('forum/comment', [DiscussionForumController::class,'AddComment'])->n
 Route::get('joblisting', function () { 
     return view('Job-Listing-Page'); 
 })->name('joblisting'); 
+
 Route::get('admin/add-event', function(){ 
     return view('Add-Event'); 
 })->name('admin.addevent'); 
@@ -57,7 +58,7 @@ Route::post('resources/add-resource', [ResourceController::class, 'AddResource']
 Route::post('jobs/add-job',[JobController::class,'AddJob'])->name('job.add'); 
 Route::post('jobs/add-event',[EventsController::class,'AddEvent'])->name('event.add'); 
 // Route::post('jobs/add-resource', [ResourceController::class, 'AddResource'])->name('resource.add');
-Route::post('resources/add-resource',[ResourceController::class,'AddResource'])->name('resource.add');
+Route::delete('resources/{id}',[ResourceController::class,'DeleteResource'])->name('resource.destroy');
 
 
 
@@ -89,6 +90,8 @@ Route::middleware('auth')->group(function () {
 
 
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update'); 
+    Route::patch('/profile/other/{id}', [ProfileController::class, 'updateotherprofile'])->name ('others.profile.picture.update'); 
+    
     Route::patch('/profile/picture', [ProfileController::class, 'updateProfilePicture'])->name ('profile.picture.update'); 
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy'); 
 

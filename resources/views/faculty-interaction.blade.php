@@ -85,11 +85,8 @@
                 // Initiate or get the chat session via fetch request
                 // initiateChat(userId);
                 initiateChat(userId).then(() => {
-                // 2. Start polling for messages
-                setInterval(() => {
                     LoadMessages();
-                }, 5000);
-            });
+            } );
 
             }
 

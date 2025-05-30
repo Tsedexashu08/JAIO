@@ -76,6 +76,21 @@
     <button disabled>&gt;</button>
 </div>
 
+<script>
+    function searchUsers() {
+        const input = document.getElementById('searchInput').value.toLowerCase();
+        const rows = document.querySelectorAll('#userTableBody tr');
+
+        rows.forEach(row => {
+            const fullName = row.querySelector('td:nth-child(2)').textContent.toLowerCase();
+            if (fullName.includes(input)) {
+                row.style.display = '';
+            } else {
+                row.style.display = 'none';
+            }
+        });
+    }
+</script>
 <style>
     table {
         table-layout: fixed;

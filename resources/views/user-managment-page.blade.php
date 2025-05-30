@@ -2,14 +2,14 @@
     {{-- <h1>user management page</h1> --}}
     <div class="user-management-page">
         {{-- option cards with ad role..minamn options(maybe more if i can figure some out) --}}
-        <div class="sidebar">
-            <section class="option-card" id="adduser">add user</section>
-            <section class="option-card" id="manage-roles"> manage roles</section>
-            <section class="option-card" id="user-list"> user list</section>
+       <div class="sidebar">
+            <section class="option-card" id="adduser"><img src="{{asset('images/addusr.png')}}" alt="" >add user</section>
+            <section class="option-card" id="manage-roles"><img src="{{asset('images/mngroles.png')}}" alt=""> manage roles</section>
+            <section class="option-card" id="user-list"><img src="{{asset('images/usrlist.png')}}" alt="" > user list</section>
             <section class="option-card">
                 <form method="POST" action="{{ route('logout') }}">
                     @csrf
-                    <button type="submit"> {{ __('Log Out') }}</button>
+                    <button type="submit" style="display: flex; gap: 4%; white-space: normal;"> <img src="{{asset('images/lgout.png')}}" alt="">{{ __('Log Out') }}</button>
                 </form>
             </section>
         </div>
@@ -105,7 +105,7 @@
     #add-user {
         display: none;
         margin: auto;
-        width: fit-content;
+        width: 100%;
     }
     .content,
     .user-counts {
@@ -286,13 +286,23 @@
         height: 70px;
         width: 100%;
         box-shadow: rgba(0, 0, .6, .4) 3px -2px 6px, rgba(.5, 0, .3, .3) 2px -7px 15px -2px, rgba(0, .3, .6, .2) 0 3px 0;
-        background-color: #fff;
+        color: white;
         border-radius: 4px;
-        transition: .2s
+        transition: .2s;
+        display: flex;
+        align-items: center;
+        justify-content: left;
+        gap: 5%;
+        
+    }
+    .option-card img{
+        width: 40px;
+        height: 40px;
+        margin-left: 10px;
     }
 
     .option-card:hover {
         scale: 1.03;
         opacity: .9
     }
-</style>
+    </style>

@@ -4,9 +4,16 @@
     <div class="search-panel" style="background-image: linear-gradient(to right, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('{{ asset('images/techday_3baaef0ed6feb9849178.webp') }}');">
         <div class="search-panel-content">
             <div class="greeting-section">
-                <h1 class="greeting-text">Hi there, <span class="user-name">{{ Auth::user()->name }}</span><x-waving-hand /></h1>
+                <h1 class="greeting-text">Hi there, <span class="user-name">{{ Auth::user()->name }}</span><span class="hand-icon"><x-waving-hand /></span></h1>
             </div>
-            <h2 class="search-title">Discover Your Next Opportunity</h2>
+
+<style>
+.hand-icon {
+    display: inline-flex;
+    align-items: center;
+    margin-left: 20px;
+}
+</style>            <h2 class="search-title">Discover Your Next Opportunity</h2>
 
             @if(auth()->user()->hasAllRoles("Admin"))
             <div class="admin-actions">

@@ -15,49 +15,59 @@ class ResourceController extends Controller
         return view('Resources-page',['resources'=>$resource]);
     }
 
-    public function AddResource(Request $request){
+    public function AddResource(Request $request)
+    {
         $request->validate([
             'title' => 'required|string',
             'description' => 'required|string',
-        
+    
             'file_path' => 'exclude_unless:linkOrfile,file|file|mimes:mp4,avi,wmv,mov,webm,ogg|max:204800',
+            'pdf_path' => 'exclude_unless:linkOrfile,pdf|file|mimes:pdf,docx|max:20480',
+    
             'link' => 'exclude_unless:linkOrfile,link|string|required_if:linkOrfile,link|url|starts_with:https://www.youtube.com',
-        
-            'linkOrfile' => 'required|in:file,link',
+    
+            'linkOrfile' => 'required|in:file,link,pdf',
         ]);
-        
-        // Process the uploaded images
+    
         $resource = null;
-
-        if ($request->hasFile('file_path')) {
-            $path = $request->file('file_path')->store('resources', 'public');
+    
+        if ($request->hasFile('file_path') && $request->linkOrfile === 'file') {
+            $path = $request->file('file_path')->store('resources/videos', 'public');
             $resource = Resource::create([
                 'title' => $request->title,
                 'description' => $request->description,
                 'file_path' => $path,
                 'linkorfile' => "file",
-                'link' => null, // just to be explicit
+                'link' => null,
             ]);
-        } else if ($request->filled('link')) {
-
+        } elseif ($request->hasFile('pdf_path') && $request->linkOrfile === 'pdf') {
+            $path = $request->file('pdf_path')->store('resources/pdfs', 'public');
             $resource = Resource::create([
                 'title' => $request->title,
                 'description' => $request->description,
-                'file_path' => null,  // no file uploaded
+                'file_path' => $path,
+                'linkorfile' => "pdf",
+                'link' => null,
+            ]);
+        } elseif ($request->filled('link') && $request->linkOrfile === 'link') {
+            $resource = Resource::create([
+                'title' => $request->title,
+                'description' => $request->description,
+                'file_path' => null,
                 'linkorfile' => "link",
-                'link' => $this->getSafeYoutubeEmbedUrl( $request->link),
+                'link' => $this->getSafeYoutubeEmbedUrl($request->link),
             ]);
         } else {
-            // Handle error: neither file nor link provided
-            return back()->withErrors(['Please provide a file or a link.'])->withInput();
+            return back()->withErrors(['Please provide a valid resource (file, link, or PDF).'])->withInput();
         }
-
+    
         if ($resource) {
             return redirect()->route('Resources')->with('success', 'Resource added successfully');
         } else {
-            return response()->json(['error' => 'Resource not added successfully: ' . $request->file('file_path')->getErrorMessage()], 500);
+            return response()->json(['error' => 'Resource not added successfully.'], 500);
         }
     }
+    
     /**
      * Generate safe YouTube embed URL
      */

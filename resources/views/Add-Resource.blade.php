@@ -85,7 +85,8 @@
                 <select name="linkOrfile" id="linkOrfile">
                     <option value="resourceType" selected>Resource Type</option>
                     <option value="link">Embeded Link</option>
-                    <option value="file">File</option>
+                    <option value="file">Video</option>
+                    <option value="pdf">PDF</option>
                 </select>
                 <div class="form-group" id="linkinput" style="display: none;">
                     <label for="link">Embeded Link</label>
@@ -96,6 +97,11 @@
                     <label for="file_path">File Upload</label>
                     <input type="file" id="file_path" name="file_path" accept="video/*" >
                 </div>
+                
+                <div class="form-group" id="pdfinput" style="display: none;">
+                    <label for="pdf_path">File Upload</label>
+                    <input type="file" id="pdf_path" name="pdf_path" accept=".pdf,.docx" >
+                </div>
             </div>
 
             <script>
@@ -103,12 +109,22 @@
                     if (this.value === "file") {
                         document.getElementById("linkinput").style.display = "none";
                         document.getElementById("fileinput").style.display = "block";
+                        document.getElementById("pdfinput").style.display = "none";
                         document.getElementById("link").value = "";
+                    } else if(this.value === "pdf") {
+                        document.getElementById("linkinput").style.display = "none";
+                        document.getElementById("fileinput").style.display = "none";
+                        document.getElementById("pdfinput").style.display = "block";
+                        document.getElementById("file_path").value = null;
+                        document.getElementById("link").value = "";
+                        
                     } else {
                         document.getElementById("linkinput").style.display = "block";
                         document.getElementById("fileinput").style.display = "none";
+                        document.getElementById("pdfinput").style.display = "none";
                         document.getElementById("file_path").value = null;
-
+                        document.getElementById("pdf_path").value = null;
+                        
                     }
                 });
             </script>

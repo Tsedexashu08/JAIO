@@ -84,8 +84,8 @@ After installation, you can:
 
 1. Access the platform at `http://localhost:8000`
 2. Register as a new user or use seeded admin credentials:
-   - Email: admin@launchnest.com
-   - Password: password
+   - Email: niamraf12@gmail.com
+   - Password: 12345678
 3. Explore the different features:
    - Job listings
    - Resource library

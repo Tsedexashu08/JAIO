@@ -47,8 +47,8 @@
             <div class="job-card" data-title="{{ $job->title }}">
                 <div class="card-header">
                     <div class="company-logo">
-                        {{-- <img src="{{ asset("storage/{$job->logo}") }}" alt="Company Logo"> --}}
-                        <img src="{{ asset("storage/company_logos/logo1.png") }}" alt="">
+                        <img src="{{ asset("storage/{$job->logo}") }}" alt="Company Logo">
+                        {{-- <img src="{{ asset("storage/company_logos/logo1.png") }}" alt=""> --}}
                     </div>
                     <div class="company-info">
                         <span class="company-name">{{ $job->company_name }}</span>

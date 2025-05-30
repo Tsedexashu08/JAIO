@@ -10,7 +10,7 @@
         {{-- <h1>Role:{{auth()->user()->hasAllRoles("Admin")}}</h1> --}}
         <section class="courses">
             <div class="uploaded course-list-container">
-                Uploaded Courses
+                <h1 style="font-weight: bold; ">Uploaded Resources</h1>
                 <div class="course-list">
                     @foreach ($resources as $resource)
                         <div class="course-item">
@@ -19,24 +19,32 @@
                             @if ($resource->linkorfile === 'link')
                                 {{-- Embedded YouTube video --}}
 
-                                <iframe class="w-full aspect-video"
-                                    src="{{ $resource->link}}" frameborder="0"
+                                <iframe class="w-full aspect-video" src="{{ $resource->link }}" frameborder="0"
                                     allowfullscreen>
                                 </iframe>
-                                
                             @elseif($resource->linkorfile === 'file')
                                 {{-- Uploaded video file --}}
                                 <video class="" style="border-radius: 10px;" controls>
                                     <source src="{{ asset('storage/' . $resource->file_path) }}" type="video/mp4">
                                     Your browser does not support the video tag.
                                 </video>
+                            @elseif($resource->linkorfile === 'pdf')
+                                @if (pathinfo($resource->file_path, PATHINFO_EXTENSION) == 'pdf' ||
+                                        pathinfo($resource->file_path, PATHINFO_EXTENSION) == 'docx')
+                                    <div class="course-image"><img style="width: 15vw;" src="{{ asset('images/pdf.png') }}" alt="">
+                                    </div>
+                                   
+                                @endif
                             @endif
                             <div style="display: flex; gap:3vw; padding-left: 5vw;">
                                 <div style=" width:fit-content">
-                                <p style="font-weight:bold;">{{ $resource->title }}</p>
-                                <p style="width:20vw; ">{{ $resource->description }}</p>
-                            </div>
-                                @if (auth()->user()->hasAllRoles('Admin') || auth()->user()->hasAllRoles('Admin'))
+                                    <p style="font-weight:bold;">{{ $resource->title }}</p>
+                                    <p style="width:20vw; ">{{ $resource->description }}</p>
+                                    
+                                    
+                                </div>
+                                <div style="display:flex; flex-direction: column;">
+                                @if (auth()->user()->hasAllRoles('Admin') || auth()->user()->hasAllRoles('Faculty'))
                                     {{-- Delete Button --}}
                                     <form action="{{ route('resource.destroy', $resource->resource_id) }}"
                                         method="POST" class="mt-4">
@@ -44,7 +52,7 @@
                                         @method('DELETE')
                                         <button type="submit"
                                             onclick="return confirm('Are you sure you want to delete this resource?')"
-                                            style="width:fit-content; border:none; background-color: transparent;">
+                                            style="width:fit-content; padding-right:3vw; border:none; background-color: transparent;">
                                             <svg viewBox="0 0 16 16" class="bi bi-trash3-fill" fill="currentColor"
                                                 height="18" width="18" xmlns="http://www.w3.org/2000/svg">
                                                 <path
@@ -54,6 +62,14 @@
                                         </button>
                                     </form>
                                 @endif
+                                @if($resource->linkorfile === 'pdf'||$resource->linkorfile === 'file')
+                                    <a href="{{{asset('storage/'.$resource->file_path)}}}" style="margin-left:-0.5vw;" download class="download" >
+                                        <svg width="38"  height="65" viewBox="0 0 78 65" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M39 43.3333L22.75 29.7917L27.3 25.8646L35.75 32.9062V10.8333H42.25V32.9062L50.7 25.8646L55.25 29.7917L39 43.3333ZM19.5 54.1667C17.7125 54.1667 16.1823 53.6363 14.9094 52.5755C13.6365 51.5148 13 50.2396 13 48.75V40.625H19.5V48.75H58.5V40.625H65V48.75C65 50.2396 64.3635 51.5148 63.0906 52.5755C61.8177 53.6363 60.2875 54.1667 58.5 54.1667H19.5Z" fill="#1D1B20"/>
+                                        </svg>
+                                        </a>
+                                    @endif
+                                </div>
                             </div>
                         </div>
                     @endforeach
@@ -64,7 +80,7 @@
 
 
 
-            <h2>Free Courses found online</h2>
+            <h1>Free Courses found online</h1>
 
             {{-- <button class="scroll-button left" onclick="scrollCourses(-1)">&#10094;</button> --}}
             <div class="course-list-container">
@@ -98,33 +114,12 @@
                         <p>React JS 19 Full Course 2025</p>
                         <p>2 hours</p>
                     </div>
-                    <div class="course-item">
-                        <div class="course-image"></div>
-                        <p>Web development course</p>
-                        <p>12 hour video</p>
-                    </div>
-                    <div class="course-item">
-                        <div class="course-image"></div>
-                        <p>Web development course</p>
-                        <p>12 hour video</p>
-                    </div>
-                    <div class="course-item">
-                        <div class="course-image"></div>
-                        <p>Web development course</p>
-                        <p>12 hour video</p>
-                    </div>
-                    <div class="course-item">
-                        <div class="course-image"></div>
-                        <p>Web development course</p>
-                        <p>12 hour video</p>
-                    </div>
-
                 </div>
             </div>
             {{-- <button class="scroll-button right" onclick="scrollCourses(1)">&#10095;</button> --}}
         </section>
         <section class="tips">
-            <h2>Tips for getting that dream job</h2>
+            <h1>Tips for getting that dream job</h1>
             <div class="course-list">
                 <div class="course-item">
                     <iframe width="473" height="480" src="https://www.youtube.com/embed/1t1_a1BZ04o"
@@ -243,6 +238,7 @@
         margin: 0;
         /* Remove default margin */
         padding: 0;
+        color: #007BFF;
         /* Remove default padding */
     }
 

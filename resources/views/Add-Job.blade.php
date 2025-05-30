@@ -104,11 +104,6 @@
                 <input type="date" id="application_deadline" name="application_deadline">
             </div>
             <div class="form-group">
-                <label for="application_link">Application Deadline</label>
-                <input type="date" id="application_link" name="application_link">
-            </div>
-
-            <div class="form-group">
                 <button type="submit">Submit Job Listing</button>
             </div>
         </form>

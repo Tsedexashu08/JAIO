@@ -4,7 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Resource;
 use Illuminate\Http\Request;
-use App\Models\Resource;
+use Illuminate\Support\Facades\Storage;
+
 
 class ResourceController extends Controller
 {
@@ -18,27 +19,85 @@ class ResourceController extends Controller
         $request->validate([
             'title' => 'required|string',
             'description' => 'required|string',
-            'file_path' => 'required|file|mimes:pdf,jpeg,png,jpg,gif,svg,mp4,avi,wmv,mov,MP4,docx,pptx|max:20480',
+        
+            'file_path' => 'exclude_unless:linkOrfile,file|file|mimes:mp4,avi,wmv,mov,webm,ogg|max:204800',
+            'link' => 'exclude_unless:linkOrfile,link|string|required_if:linkOrfile,link|url|starts_with:https://www.youtube.com',
+        
+            'linkOrfile' => 'required|in:file,link',
         ]);
+        
         // Process the uploaded images
         $resource = null;
+
         if ($request->hasFile('file_path')) {
             $path = $request->file('file_path')->store('resources', 'public');
-            $resource =  Resource::create([
+            $resource = Resource::create([
                 'title' => $request->title,
                 'description' => $request->description,
                 'file_path' => $path,
+                'linkorfile' => "file",
+                'link' => null, // just to be explicit
             ]);
+        } else if ($request->filled('link')) {
+
+            $resource = Resource::create([
+                'title' => $request->title,
+                'description' => $request->description,
+                'file_path' => null,  // no file uploaded
+                'linkorfile' => "link",
+                'link' => $this->getSafeYoutubeEmbedUrl( $request->link),
+            ]);
+        } else {
+            // Handle error: neither file nor link provided
+            return back()->withErrors(['Please provide a file or a link.'])->withInput();
         }
+
         if ($resource) {
             return redirect()->route('Resources')->with('success', 'Resource added successfully');
         } else {
             return response()->json(['error' => 'Resource not added successfully: ' . $request->file('file_path')->getErrorMessage()], 500);
         }
     }
+    /**
+     * Generate safe YouTube embed URL
+     */
+    protected function getSafeYoutubeEmbedUrl($url)
+    {
+        $videoId = $this->extractYouTubeId($url);
+
+        if (!$videoId) {
+            return '';
+        }
+
+        return "https://www.youtube.com/embed/{$videoId}?rel=0&enablejsapi=1";
+    }
+
+    /**
+     * Extract YouTube ID (more robust version)
+     */
+    protected function extractYouTubeId($url)
+    {
+        $patterns = [
+            '/(?:youtube\.com\/(?:[^\/]+\/.+\/|(?:v|e(?:mbed)?)\/|.*[?&]v=)|youtu\.be\/)([^"&?\/\s]{11})/i',
+            '/^([^"&?\/\s]{11})$/i' // Just in case only ID is stored
+        ];
+
+        foreach ($patterns as $pattern) {
+            if (preg_match($pattern, $url, $matches)) {
+                return $matches[1];
+            }
+        }
+
+        return null;
+    }
     public function EditResource(Request $request) {}
     public function DeleteResource($id) {
-         $resource = Resource::findOrFail($id);
+
+        $resource = Resource::where('resource_id', $id)->firstOrFail();
+
+        if ($resource->file_path && Storage::exists($resource->file_path)) {
+            Storage::delete($resource->file_path);
+        }
 
         if ($resource->delete()) {
             return redirect()->route('Resources')->with('success', 'Resource deleted successfully');

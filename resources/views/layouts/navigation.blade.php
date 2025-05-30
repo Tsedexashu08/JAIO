@@ -5,6 +5,27 @@
         z-index: 10;
         width: 100%;
     }
+    /* .username{
+        width: 300px;
+        background-color: red;
+    }   */
+    .bu{
+        width: fit-content;
+        height:50px;
+        display: flex;
+        transition: ease-in 1s;
+        border-radius: 10px;
+        border:1px solid blue;
+        margin-top: 12px;
+    }
+    .bu:hover{
+        background-color: blue;
+    }
+    .ms-1{
+        margin-top:10%;
+    }
+  
+
 </style>
 <nav x-data="{ open: false }" class="bg-white border-b border-gray-100">
     <!-- Primary Navigation Menu -->
@@ -18,20 +39,20 @@
                     </a>
                 </div>
             </div>
-            <h1>HiLCoE JAIO</h1>
+            <h1>JAIO</h1>
             <!-- Settings Dropdown -->
 
             <div class="hidden sm:flex sm:flex-col sm:items-center sm:ms-6 hover-border ml-32">
                 <x-dropdown align="right" width="50%" z-index='20'>
-                    <x-slot name="trigger">
+                    <x-slot name="trigger" class="div">
                         <button
-                            class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-gray-500 bg-white hover:text-gray-700 focus:outline-none transition ease-in-out duration-150">
+                            class="bu">
                             <img src="{{ asset('storage/' . Auth::user()->profile_picture) }}" alt="Profile Picture"
                                 class="profilepic">
                             <div class=" username">
                                 {{ Auth::user()->name }}
                                 <span>{{ Auth::user()->getRoleNames()->first() }}</span>
-                            </div>
+                            </div> 
                             <div class="ms-1">
                                 <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg"
                                     viewBox="0 0 20 20">

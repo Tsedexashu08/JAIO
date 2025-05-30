@@ -22,7 +22,7 @@ class AdminSeeder extends Seeder
 
                 User::create([
                         'name' => 'Rufael Melese',
-                        'profile_picture' => 'profile_pics/nati.jpg',
+                        'profile_picture' => 'profile_pics/rafa.jpg',
                         'email' => 'niamraf12@gmail.com',
                         'password' => bcrypt('12345678'),
                 ])->assignRole('Admin');

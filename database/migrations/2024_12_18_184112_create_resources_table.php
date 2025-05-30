@@ -13,7 +13,8 @@ class CreateResourcesTable extends Migration
             $table->string('title');
             $table->text('description')->nullable();
             $table->string('file_path')->nullable();
-            $table->string('link')->nullable();
+            $table->text(column: 'link')->nullable();
+            $table->string('linkorfile');
             $table->timestamps();
         });
     }

@@ -90,6 +90,8 @@ Route::middleware('auth')->group(function () {
 
 
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update'); 
+    Route::patch('/profile/other/{id}', [ProfileController::class, 'updateotherprofile'])->name ('others.profile.picture.update'); 
+    
     Route::patch('/profile/picture', [ProfileController::class, 'updateProfilePicture'])->name ('profile.picture.update'); 
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy'); 
 

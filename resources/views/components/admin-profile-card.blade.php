@@ -172,7 +172,7 @@
         <span>{{ $user->name }}</span>
         <p>{{ $user->getRoleNames()->first() }}</p>
     </div>
-    <form id="upload-form" action="{{ route('profile.picture.update') }}" method="POST" enctype="multipart/form-data">
+    <form id="upload-form" action="{{ route('others.profile.picture.update',['id'=>$user->id ]) }}" method="POST" enctype="multipart/form-data">
         @csrf
         @method('PATCH')
         <label class="custom-file-upload">
@@ -181,6 +181,7 @@
         </label>
         <button type="submit" class="submit-button">Submit</button>
     </form>
+
 </div>
 <script>
     function submitFormOnFileSelect() {

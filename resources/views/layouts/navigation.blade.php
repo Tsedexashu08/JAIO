@@ -15,11 +15,10 @@
         display: flex;
         transition: ease-in 1s;
         border-radius: 10px;
-        border:1px solid blue;
-        margin-top: 12px;
+        margin-top: 15px;
     }
     .bu:hover{
-        background-color: blue;
+        background-color:rgba(0, 123, 255, 0.46);
     }
     .ms-1{
         margin-top:10%;
@@ -35,11 +34,11 @@
                 <!-- Logo -->
                 <div class="shrink-0 flex items-center">
                     <a href="{{ route('dashboard') }}">
-                        <x-application-logo class="block h-9 w-auto fill-current text-gray-800" />
+                        <x-application-logo class="block h-9 w-auto fill-current text-gray-800" style="width:40px;" />
                     </a>
                 </div>
             </div>
-            <h1>JAIO</h1>
+            <h1 style="color:#007BFF">LaunchNest</h1>
             <!-- Settings Dropdown -->
 
             <div class="hidden sm:flex sm:flex-col sm:items-center sm:ms-6 hover-border ml-32">
@@ -51,7 +50,7 @@
                                 class="profilepic">
                             <div class=" username">
                                 {{ Auth::user()->name }}
-                                <span>{{ Auth::user()->getRoleNames()->first() }}</span>
+                                <span style="color:#007BFF">{{ Auth::user()->getRoleNames()->first() }}</span>
                             </div> 
                             <div class="ms-1">
                                 <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg"

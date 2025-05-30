@@ -4,7 +4,7 @@
 
         <section class="home-section">
             <h1>Your Career Journey Starts Here!</h1>
-            <h3>HiLCoE's unofficial Job, Internship, and Apprenticeship Opportunities</h3>
+            <h3>Fuel Your Journey. Find Your Nest.</h3>
             <div class="scroll-arrow" id="scrollArrow">
                 <!-- Arrow SVG -->
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">

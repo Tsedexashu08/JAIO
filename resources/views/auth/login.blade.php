@@ -92,9 +92,9 @@
       <!-- Logo -->
     <div class="shrink-0 h-25 flex items-center justify-center  align-items-center gap-6 mb-3 mr-3">
         <a href="{{ route('dashboard') }}">
-            <x-application-logo class="block h-auto w-auto fill-current text-gray-800" />
+                <x-loginlogo class="block h-auto w-auto fill-current text-gray-800"  />
+            
         </a>
-        <h1 id="heading" class=" mt-6 ">HiLCoE JAIO</h1>
     </div>
     
         <x-auth-session-status class="session-status" :status="session('status')" />

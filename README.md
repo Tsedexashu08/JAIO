@@ -1,7 +1,6 @@
 # LaunchNest - Career Platform
 
-https://github.com/Rufaelu/LaunchNest/blob/main/public/images/Logo.png
-
+![Alt Text]([https://github.com/Rufaelu/LaunchNest/blob/b4499f97c233bdb330d6de5af0829a1b6c520923/public/images/Logo.png])
 LaunchNest is a Laravel-based career platform designed to bridge the gap between education and employment by providing an integrated solution for job discovery, skill-building resources, peer networking, and career guidance.
 
 ## Features

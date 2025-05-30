@@ -11,7 +11,7 @@
                 </path>
             </svg>
         </label>
-        <span class="like-counter">{{ $likes }} Likes</span>
+        <span class="like-counter" id="like-counter-{{ $postId }}">{{ $likes }} Likes</span>
     </div>
 
     <div class="group relative comment-container">
@@ -38,26 +38,28 @@
 
 <div id="add-cmnt-{{ $postId }}" class="add-cmnt">
     <div class="flex justify-center items-center bg-gray-200 h-fit p-2 m-2 w-full">
-        <div class="comment-section w-full">
-            <div class="comment">
-                <img src="{{ asset('storage/' . Auth::user()->profile_picture) }}" alt="" class="avatar">
-                <textarea placeholder="Write your comment..." class="comment-input h-fit"></textarea>
-                <button id="post-button" data-post-id="{{ $postId }}">
-                    ↑ Post
-                </button>
-            </div>
-        </div>
+        <form action="{{ route('forum.comment',$postId) }}" method='POST'>
+            @csrf
+            @method('POST')
+            <div class="comment-section w-full">
+                <div class="comment">
+                    <img src="{{ asset('storage/' . Auth::user()->profile_picture) }}" alt="" class="avatar">
+                    <textarea placeholder="Write your comment..." class="comment-input h-fit" name='content'></textarea>
+                    <button id="post-button" data-post-id="{{ $postId }}" type="submit">
+                        ↑ Post
+                    </button>
+                </div>
+        </form>
     </div>
+</div>
 
-    <!-- Existing Comments -->
-    <div class="flex-col  justify-center items-center  bg-gray-200 h-fit p-12  m-2">
-        @foreach ($feedback as $comment)
-            <x-comment
-            comment="{{ $comment->content }}" 
-            username="{{ $comment->user->name }}"
-            profilepicture="{{ asset('storage/' . $comment->user->profilePicture) }}"/>
-        @endforeach
-    </div>
+<!-- Existing Comments -->
+<div class="flex-col  justify-center items-center  bg-gray-200 h-fit p-12  m-2">
+    @foreach ($feedback as $comment)
+        <x-comment comment="{{ $comment->content }}" username="{{ $comment->user->name }}"
+            profilepicture="{{ asset('storage/' . $comment->user->profilePicture) }}" />
+    @endforeach
+</div>
 </div>
 
 
@@ -65,10 +67,6 @@
     #add-cmnt-{{ $postId }} {
         display: none;
     }
-
-    /* .cmts {
-        display: flex;
-    } */
 
     .likes-and-comments {
         display: flex;
@@ -142,10 +140,9 @@
         fill: #2196F3;
     }
 
-    .add-cmnt{
+    .add-cmnt {
         display: none;
     }
-
 </style>
 
 <script>
@@ -163,7 +160,24 @@
                 }
             }
 
-            console.log('Post ID:', postId);//just checking to see if postid is passed properly(will remove later).
+            console.log('Post ID:',
+                postId); //just checking to see if postid is passed properly(will remove later).
+        });
+    });
+
+    document.querySelectorAll('.like-container input').forEach(checkbox => {
+        checkbox.addEventListener('change', function() {
+            const postId = this.id.split('-').pop();
+            const likeCounter = document.querySelector(`#like-counter-${postId}`);
+            let likes = parseInt(likeCounter.textContent);
+
+            if (this.checked) {
+                likes++;
+            } else {
+                likes;
+            }
+
+            likeCounter.textContent = `${likes} Likes`;
         });
     });
 </script>

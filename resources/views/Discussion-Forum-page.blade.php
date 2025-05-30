@@ -2,8 +2,9 @@
     <link rel="stylesheet" href="{{ asset('css/discussion-forum-page.css') }}">
     <div class="forum-page">
         <div class="forum-header">
-            <h1>Welcome to LaunchNest's Discussion Forum</h1>
+            <h1>Welcome to LaunchNet's Discussion Forum</h1
             <p id="intro">Ask questions, share your knowledge and experience, and learn from others.</p>
+            <p id="results-count"></p>
             <div class="forum-search">
                 <input type="text" placeholder="Search for a topic">
                 <button>
@@ -73,7 +74,7 @@
                             <p>{{ $forumPost->content }}</p>
                             <div class="images">
                                 @foreach ($forumPost->images as $image)
-                                    <img style="height:40%; width:60%;" src="{{ asset('storage/' . $image->image) }}" alt="Forum Image"
+                                    <img src="{{ asset('storage/' . $image->image) }}" alt="Forum Image"
                                         id="forum-image" class="img-fluid" loading="lazy">
                                 @endforeach
                             </div>
@@ -105,6 +106,25 @@
         document.querySelector('#close-button').addEventListener('click', function() {
             const addpost = document.getElementById('popup-form');
             addpost.style.display = 'none';
+        });
+
+        document.querySelector('.forum-search input').addEventListener('input', function() {
+            const query = this.value.toLowerCase();
+            const forumCards = document.querySelectorAll('.forum-card');
+            let resultsCount = 0;
+
+            forumCards.forEach(card => {
+                const topic = card.querySelector('.forum-content h2').textContent.toLowerCase();
+                if (topic.includes(query)) {
+                    card.style.display = 'block';
+                    resultsCount++;
+                } else {
+                    card.style.display = 'none';
+                   
+                }
+            });
+         
+            document.getElementById('results-count').textContent = `${resultsCount} result(s) found`;
         });
     </script>
 </x-app-layout>

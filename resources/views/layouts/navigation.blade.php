@@ -137,7 +137,6 @@
         <x-nav-link href="home" active="{{ request()->routeIs('home') }}">Home</x-nav-link>
         <x-nav-link href="messages" active="{{ request()->routeIs('messages') }}">Faculty Interaction</x-nav-link>
         <x-nav-link href="joblisting" active="{{ request()->routeIs('joblisting') }}">Job Listings</x-nav-link>
-        <x-nav-link href="networking" active="{{ request()->routeIs('networking') }}">Networking Events</x-nav-link>
         <x-nav-link href="{{ route('discussion') }}" active="{{ request()->routeIs('discussion') }}">Discussion
             Forums</x-nav-link>
         <x-nav-link href="{{ route('Resources') }}" active="{{ request()->routeIs('Resources') }}">Resources</x-nav-link>

@@ -7,6 +7,7 @@ use App\Http\Controllers\EventsController;
 use App\Http\Controllers\JobController;
 use App\Http\Controllers\ResourceController;
 use App\Http\Controllers\UserManagementController;
+use App\Http\Controllers\FeedBackController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Session;
 use App\Http\Middleware\LogUserActivity;
@@ -32,13 +33,15 @@ Route::post('/send-message', [ChatController::class, 'sendMessage'])->name('chat
 Route::post('/load-messages', [ChatController::class, 'LoadMessages'])->name('chat.loadMessages'); 
 
 //routes for discussion forum page 
-Route::post('add-post', [DiscussionForumController::class, 'addPost'])->name('discussion.addPost') ->middleware('LogUserAction:made a forum post');
-Route::post('forum/comment', [DiscussionForumController::class,'AddComment'])->name('forum.comment'); 
+// Route::post('add-post', [DiscussionForumController::class, 'addPost'])->name('discussion.addPost') ->middleware('LogUserAction:made a forum post');
+// Route::post('forum/comment', [DiscussionForumController::class,'AddComment'])->name('forum.comment'); 
+Route::post('add-post', [DiscussionForumController::class, 'addPost'])->name('discussion.addPost')->middleware('LogUserAction:made a forum post');
+Route::post('forum/comment/{id}', [FeedBackController::class,'AddComment'])->name('forum.comment');
 
 //joblistingpage routes 
-Route::get('joblisting', function () { 
-    return view('Job-Listing-Page'); 
-})->name('joblisting'); 
+//joblistingpage routes
+Route::get('joblisting', [JobController::class,'index'])->name('joblisting');
+Route::delete('joblisting/delete/{id}', [JobController::class,'DeleteJob'])->name('job.delete');
 
 Route::get('admin/add-event', function(){ 
     return view('Add-Event'); 

@@ -40,7 +40,7 @@
 }
 .chat-wrapper:hover{
     scale: 1.06;
-    transition: 0.2s ease;
+    transition: 0.3s ease;
 }
 /* Floating animation */
 @keyframes float {
